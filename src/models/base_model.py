@@ -13,3 +13,7 @@ class BaseModel(ABC):
     @abstractmethod
     def __call__(self, observations, reward):
         """Get action."""
+    
+    @abstractmethod
+    def update(self, old_observation, action_done, observation, reward):
+        """Update."""

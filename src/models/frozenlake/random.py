@@ -14,6 +14,8 @@ class Model(BaseModel):
     
     def __call__(self, observations, reward) -> Any:
         """Get action."""
-        print(observations, type(observations))
-
         return self.action_space.sample()
+    
+    def update(self, old_observation, action_done, observation, reward):
+        """Update."""
+        pass

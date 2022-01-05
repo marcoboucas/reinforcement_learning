@@ -1,9 +1,11 @@
 """Main file."""
 
+import logging
 from time import sleep
 import fire
 import gym
 import importlib
+from tqdm import tqdm
 
 ENV_CONVERSION = {"frozenlake": "FrozenLake-v1"}
 
@@ -26,15 +28,16 @@ def main(
         environment.action_space, environment.observation_space
     )
 
-    for _ in range(episodes):
+    for _ in tqdm(range(episodes), desc="Episodes", unit="episodes", disable=render):
         if render:
             environment.render()
         action_done = model(observation, reward)
         old_observation = observation
         observation, reward, done, info = environment.step(action_done)
-        #model.update(old_observation, action_done, observation, reward)
+        model.update(old_observation, action_done, observation, reward)
         if done:
-            break
+            environment.reset()
+            logging.info("RESET THE ENV")
         sleep(0.01)
 
     environment.close()
