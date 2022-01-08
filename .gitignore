@@ -131,3 +131,4 @@ tmp_*.py
 docs
 test.py
 test.ipynb
+*.pdf
