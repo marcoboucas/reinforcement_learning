@@ -22,6 +22,7 @@ def main(
     max_steps: int = -1,
     render: bool = False,
     verbose: bool = False,
+    graphs: bool = True,
 ):
     """Main function."""
     # Load the env
@@ -73,14 +74,15 @@ def main(
     results_df = pd.DataFrame.from_records(results)
     print(results_df.describe())
 
-    _, axes = plt.subplots(1, 2)
-    sns.histplot(x=results_df["reward"], ax=axes[0])
-    axes[0].set_title("Rewards")
+    if graphs:
+        _, axes = plt.subplots(1, 2)
+        sns.histplot(x=results_df["reward"], ax=axes[0])
+        axes[0].set_title("Rewards")
 
-    sns.kdeplot(x=results_df["steps"], hue=results_df["reward"], ax=axes[1])
-    axes[1].set_title("Number of steps to reach the end or die")
+        sns.kdeplot(x=results_df["steps"], hue=results_df["reward"], ax=axes[1])
+        axes[1].set_title("Number of steps to reach the end or die")
 
-    plt.show()
+        plt.show()
 
 
 if __name__ == "__main__":
