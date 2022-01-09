@@ -32,7 +32,7 @@ def main(
 
     # Load the model
     model_class = getattr(importlib.import_module(f"src.models.{model}"), "Model")
-    model = model_class(
+    model_instance = model_class(
         environment.action_space,
         environment.observation_space,
         environment if model_class.model_based else None,
@@ -50,10 +50,10 @@ def main(
                 environment.render()
                 sleep(0.01)
                 print("\n")
-            action_done = model(observation)
+            action_done = model_instance(observation)
             old_observation = observation
             observation, reward, done, _ = environment.step(action_done)
-            model.update(old_observation, action_done, observation, reward)
+            model_instance.update(old_observation, action_done, observation, reward)
 
             if done or step >= max_steps > 0:
                 if verbose:

@@ -39,7 +39,7 @@ class Model(BaseModel):
         """Get action."""
         return self.policy[observations]
 
-    def update_values(self) -> None:
+    def update_values(self) -> bool:
         """Update the values."""
         current_sum = self.V.sum()
         for state in range(self.observation_space.n):
@@ -49,7 +49,7 @@ class Model(BaseModel):
                     for prob, next_state, reward, done in self.env.env.P[state][self.policy[state]]
                 ]
             )
-        return abs(current_sum - self.V.sum()) < 1e-4
+        return bool(abs(current_sum - self.V.sum()) < 1e-4)
 
     def update_policy(self) -> bool:
         """Update the policy."""
