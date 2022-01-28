@@ -130,6 +130,11 @@ def question_4():
 
 if True:
     question_4()
+"""
+Les valeurs de V semblent similaires (en réalité, même si les valeurs
+ sont différents, on peut comparer les valeurs aux différents états,
+ mais les comparaisons inter-états semblent les mêmes, et c'est surtout cela qui importe)
+"""
 
 
 pdb.set_trace()
@@ -253,6 +258,12 @@ def question_6():
 
 if True:
     question_6()
+
+"""
+Je ne sais pas si cela pourrait être pertinent, mais ne peut-on pas
+regarder si la policy générée par la value est identique à celle que l'on
+a en entrée ?
+"""
 
 pdb.set_trace()
 # Question 7
@@ -510,7 +521,39 @@ def question_9():
 
 if True:
     question_9()
+"""
+VALUE ITERATION
 
+(16,)
+Running time: 0.0031 sec
+
+An optimal policy is:
+
+←↑←↑
+←←←←
+↑↓←←
+←→↓←
+
+
+POLICY ITERATION
+
+Running time: 0.0057 sec
+
+An optimal policy is:
+
+←↑←↑
+←←←←
+↑↓←←
+←→↓←
+
+Bon, déjà on obtient les mêmes résultats, ce qui est rassurant.
+En terme de temps, il semblerait que la policy iteration mette un
+peu plus de temps à converger vers la solution.
+
+Pour vérifier cela, après quelques recherches internet, cela me semble
+ plus nuancé, car on peut retrouver de ferveurs défenseurs des 2 méthodes.
+
+"""
 pdb.set_trace()
 # Question 11
 
@@ -648,4 +691,6 @@ def question_13_bis():
 
 
 if True:
+    print("DISPLAY THE RESULTS FOR MULTIPLE TRAJECTORIES")
+    print('Because not all of them succeed, so the seed might be a "wrong" one')
     question_13_bis()
